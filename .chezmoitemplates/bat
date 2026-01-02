@@ -1,0 +1,14 @@
+{{ if ne .chezmoi.os "windows" }}
+#!{{ lookPath "bash" }}
+
+mkdir -p "$(bat --config-dir)/themes"
+{{ else }}
+mkdir -p "$(bat --config-dir)/themes" -f
+{{ end }}
+
+wget --no-verbose -O "$(bat --config-dir)/themes/Catppuccin Latte.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+wget --no-verbose -O "$(bat --config-dir)/themes/Catppuccin Frappe.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+wget --no-verbose -O "$(bat --config-dir)/themes/Catppuccin Macchiato.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+wget --no-verbose -O "$(bat --config-dir)/themes/Catppuccin Mocha.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+
+bat cache --build
